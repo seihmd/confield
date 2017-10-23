@@ -25,24 +25,15 @@ host: $CONFIELD_DBHOST|localhost
 	conf := dbSetting{}
 	yaml.Unmarshal([]byte(yml), &conf)
 
-	fmt.Println(conf.Password.String()) // mypass
-	fmt.Println(conf.User.String())     // root
-	fmt.Println(conf.Name.String())     // db_dev
-	fmt.Println(conf.Host.String())     // localhost
-
 	os.Setenv("CONFIELD_DBPASS", "dbpass")
 	os.Setenv("CONFIELD_DBUSER", "dbuser")
-	os.Setenv("CONFIELD_DBNAME", "dbname")
-	os.Setenv("CONFIELD_DBHOST", "dbhost")
 	defer func() {
 		os.Setenv("CONFIELD_DBPASS", "")
 		os.Setenv("CONFIELD_DBUSER", "")
-		os.Setenv("CONFIELD_DBNAME", "")
-		os.Setenv("CONFIELD_DBHOST", "")
 	}()
 
 	fmt.Println(conf.Password.String()) // dbpass
 	fmt.Println(conf.User.String())     // dbuser
-	fmt.Println(conf.Name.String())     // dbname
-	fmt.Println(conf.Host.String())     // dbhost
+	fmt.Println(conf.Name.String())     // db_dev
+	fmt.Println(conf.Host.String())     // localhost
 }
